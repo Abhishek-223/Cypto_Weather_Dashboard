@@ -123,10 +123,13 @@ export function NotificationsPanel({ onClose }: NotificationsPanelProps) {
   }, [onClose])
 
   return (
-    <Card ref={panelRef} className="absolute right-0 top-12 w-80 md:w-96 z-50 shadow-lg overflow-hidden">
+    <Card
+      ref={panelRef}
+      className="absolute right-0 top-12 w-full sm:w-80 md:w-96 z-50 shadow-lg overflow-hidden"
+    >
       <div className="p-4 border-b flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h3 className="font-medium">Notifications</h3>
+          <h3 className="font-medium text-sm sm:text-base">Notifications</h3>
           <Badge variant="secondary">{unreadCount} new</Badge>
         </div>
         <div className="flex items-center gap-2">

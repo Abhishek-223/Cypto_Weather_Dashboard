@@ -103,7 +103,7 @@ export function WeatherPanel() {
 
   if (loading) {
     return (
-      <Card className="col-span-1">
+      <Card className="col-span-1 w-full sm:w-auto">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Cloud className="h-5 w-5" />
@@ -111,7 +111,7 @@ export function WeatherPanel() {
           </CardTitle>
           <CardDescription>Loading weather data...</CardDescription>
         </CardHeader>
-        <CardContent className="flex items-center justify-center h-[300px]">
+        <CardContent className="flex flex-col sm:flex-row items-center justify-center h-auto sm:h-[300px]">
           <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
         </CardContent>
       </Card>
@@ -119,14 +119,16 @@ export function WeatherPanel() {
   }
 
   return (
-    <Card className="col-span-1">
+    <Card className="col-span-1 w-full sm:w-auto">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div>
           <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
             <Cloud className="h-4 w-4 sm:h-5 sm:w-5" />
             Weather Overview
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm">Real-time weather data for your tracked cities</CardDescription>
+          <CardDescription className="text-xs sm:text-sm">
+            Real-time weather data for your tracked cities
+          </CardDescription>
         </div>
         <Button variant="ghost" size="sm" asChild>
           <Link href="/weather" className="flex items-center gap-1 text-xs sm:text-sm">
@@ -149,7 +151,9 @@ export function WeatherPanel() {
             {weatherData.map((data) => (
               <TabsContent key={data.city} value={data.city} className="space-y-3 sm:space-y-4">
                 <div
-                  className={`flex items-center justify-between rounded-lg border p-2 sm:p-4 ${getWeatherColor(data.condition)}`}
+                  className={`flex items-center justify-between rounded-lg border p-2 sm:p-4 ${getWeatherColor(
+                    data.condition
+                  )}`}
                 >
                   <div className="space-y-1">
                     <p className="text-xs sm:text-sm font-medium leading-none">{data.city}</p>
@@ -159,7 +163,7 @@ export function WeatherPanel() {
                   {getWeatherIcon(data.condition)}
                 </div>
 
-                <div className="h-[100px] sm:h-[150px]">
+                <div className="h-[200px] sm:h-[300px] overflow-hidden">
                   <ChartContainer
                     config={{
                       temperature: {
@@ -170,12 +174,12 @@ export function WeatherPanel() {
                   >
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={getHourlyForecastData(data)}>
-                        <XAxis 
-                          dataKey="time" 
-                          tickLine={false} 
-                          axisLine={false} 
-                          padding={{ left: 5, right: 5 }}
-                          tick={{ fontSize: 8 }}
+                        <XAxis
+                          dataKey="time"
+                          tickLine={false}
+                          axisLine={false}
+                          padding={{ left: 10, right: 10 }}
+                          tick={{ fontSize: 10 }}
                         />
                         <YAxis hide={true} domain={["dataMin - 5", "dataMax + 5"]} />
                         <ChartTooltip content={<ChartTooltipContent />} />
@@ -184,9 +188,9 @@ export function WeatherPanel() {
                           dataKey="temperature"
                           name="temperature"
                           stroke="var(--color-temperature)"
-                          strokeWidth={1.5}
-                          dot={{ r: 1.5 }}
-                          activeDot={{ r: 3 }}
+                          strokeWidth={2}
+                          dot={{ r: 2 }}
+                          activeDot={{ r: 4 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>

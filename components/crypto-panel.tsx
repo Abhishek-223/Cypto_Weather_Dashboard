@@ -63,7 +63,7 @@ export function CryptoPanel() {
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div>
           <CardTitle className="flex items-center gap-2">
-            <CreditCard className="h-5 w-5" />
+            <CreditCard className="h-4 w-4 sm:h-5 sm:w-5" />
             Cryptocurrency Market
           </CardTitle>
           <CardDescription>Live cryptocurrency prices and trends</CardDescription>
@@ -141,13 +141,15 @@ export function CryptoPanel() {
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center h-[200px] sm:h-[300px] text-muted-foreground">
+          <div className="flex flex-col sm:flex-row items-center justify-center h-auto sm:h-[300px] text-muted-foreground">
             <CreditCard className="h-8 w-8 sm:h-10 sm:w-10 mb-2 opacity-50" />
-            <p className="text-sm sm:text-base">No cryptocurrency data available</p>
+            <p className="text-sm sm:text-base text-center sm:text-left">
+              No cryptocurrency data available
+            </p>
             <Button
               variant="outline"
               size="sm"
-              className="mt-4"
+              className="mt-4 sm:mt-0 sm:ml-4"
               onClick={() => getCryptoData(10).then((data) => setCryptoData(data.slice(0, 3)))}
             >
               Retry

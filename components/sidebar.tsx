@@ -56,14 +56,14 @@ export function Sidebar() {
       <aside
         className={cn(
           "fixed left-0 top-0 z-40 h-screen bg-background border-r border-border transition-all duration-300",
-          isOpen ? "w-64" : "w-20",
+          isOpen ? "w-64" : "w-20", 
         )}
       >
         <div className="flex h-16 items-center justify-between px-4">
           <div className={cn("flex items-center", isOpen ? "justify-between w-full" : "justify-center")}>
             {isOpen && (
               <Link href="/" className="flex items-center gap-2">
-                <span className="font-bold text-xl">CryptoWeather</span>
+                <span className="font-bold text-xl truncate">CryptoWeather</span>
               </Link>
             )}
             <Button
@@ -77,7 +77,7 @@ export function Sidebar() {
             </Button>
           </div>
         </div>
-        <div className="space-y-4 py-4">
+        <div className="space-y-4 py-4 overflow-y-auto">
           <nav className="space-y-1 px-2">
             {navItems.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`)
@@ -94,7 +94,7 @@ export function Sidebar() {
                   )}
                 >
                   <item.icon className="h-5 w-5 mr-2" />
-                  <span>{item.title}</span>
+                  <span className="truncate">{item.title}</span>
                 </Link>
               ) : (
                 <Tooltip key={item.href}>

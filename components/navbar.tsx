@@ -55,10 +55,15 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6">
-      <Button variant="ghost" size="icon" className="md:hidden" onClick={toggle} aria-label="Toggle menu">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="md:hidden"
+        onClick={toggle}
+        aria-label="Toggle menu"
+      >
         <Menu className="h-5 w-5" />
       </Button>
-
       <div className="flex flex-1 items-center gap-4 justify-end">
         <form className="flex-1 md:max-w-xs" onSubmit={handleSearch}>
           <div className="relative">
@@ -82,7 +87,6 @@ export function Navbar() {
             <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           </Button>
-
           <div className="relative">
             <Button
               variant="ghost"
@@ -98,7 +102,6 @@ export function Navbar() {
             </Button>
             {showNotifications && <NotificationsPanel onClose={() => setShowNotifications(false)} />}
           </div>
-
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
