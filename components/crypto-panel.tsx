@@ -21,7 +21,7 @@ export function CryptoPanel() {
       try {
         setLoading(true)
         const data = await getCryptoData(10)
-        setCryptoData(data.slice(0, 3)) // Show top 3 cryptocurrencies
+        setCryptoData(data.slice(0, 3)) 
       } catch (error) {
         console.error("Failed to fetch crypto data:", error)
         toast({
@@ -33,10 +33,7 @@ export function CryptoPanel() {
         setLoading(false)
       }
     }
-
     fetchCryptoData()
-
-    // Refresh data every 5 minutes
     const interval = setInterval(fetchCryptoData, 5 * 60 * 1000)
     return () => clearInterval(interval)
   }, [toast])

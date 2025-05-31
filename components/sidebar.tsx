@@ -42,7 +42,6 @@ export function Sidebar() {
   const { isOpen, toggle } = useSidebar()
   const [mounted, setMounted] = useState(false)
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true)
   }, [])

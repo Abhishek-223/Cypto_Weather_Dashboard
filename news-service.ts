@@ -49,20 +49,17 @@ export async function getNewsData(
   }
 
   try {
-    // Construct query parameters
     const params = new URLSearchParams({
       apikey: API_KEY,
       language: 'en',
     });
 
-    // Map our categories to NewsAPI categories
     if (category && category !== 'all') {
       params.append('category', categoryMapping[category] || 'cryptocurrency');
     } else {
       params.append('q', 'crypto OR blockchain OR cryptocurrency OR bitcoin');
     }
 
-    // Fetch news from the API
     const response = await fetch(`${BASE_URL}?${params.toString()}`);
     
     if (!response.ok) {
@@ -87,7 +84,6 @@ export async function getNewsData(
       throw new Error('Invalid response format from News API');
     }
 
-    // Transform API response to our NewsItem format
     let newsItems: NewsItem[] = data.results.map(item => {
       const timestamp = parseISO(item.pubDate).getTime();
       return {
@@ -103,15 +99,11 @@ export async function getNewsData(
       };
     });
 
-    // Sort news items
     if (sortBy === 'latest') {
       newsItems.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     } else if (sortBy === 'trending') {
-      // For trending, we'll still sort by latest as the API doesn't provide trending data
       newsItems.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     }
-
-    // Return limited number of news items
     return newsItems.slice(0, limit);
   } catch (error) {
     console.error('Error fetching news:', error);

@@ -88,11 +88,9 @@ export function WeatherPanel() {
     }
   }
 
-  // Prepare hourly forecast data for the chart
   const getHourlyForecastData = (data: WeatherData) => {
     if (!data || !data.hourlyForecast) return []
 
-    // Get every 3 hours for the chart
     return data.hourlyForecast
       .filter((_, index) => index % 3 === 0)
       .map((hour) => ({

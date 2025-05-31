@@ -26,7 +26,6 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const { toast } = useToast()
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true)
   }, [])

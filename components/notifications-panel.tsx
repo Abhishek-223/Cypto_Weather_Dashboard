@@ -108,7 +108,6 @@ export function NotificationsPanel({ onClose }: NotificationsPanelProps) {
     })
   }
 
-  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(event.target as Node)) {

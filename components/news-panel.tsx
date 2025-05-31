@@ -23,7 +23,7 @@ export function NewsPanel() {
       try {
         setLoading(true)
         setError(null)
-        const data = await getNewsData(6) // Get 6 news items for the panel
+        const data = await getNewsData(6) 
         setNewsItems(data)
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : "Failed to fetch news data"
@@ -38,15 +38,11 @@ export function NewsPanel() {
         setLoading(false)
       }
     }
-
     fetchNewsData()
-
-    // Refresh data every 30 minutes
     const interval = setInterval(fetchNewsData, 30 * 60 * 1000)
     return () => clearInterval(interval)
   }, [toast])
 
-  // Group news by category
   const getNewsByCategory = (category: string) => {
     return newsItems
       .filter((item) => {
@@ -54,7 +50,6 @@ export function NewsPanel() {
         const itemCategory = item.category.toLowerCase();
         
         if (category === "trending") {
-          // Show news about major cryptocurrencies and market trends
           return title.includes("bitcoin") || 
                  title.includes("ethereum") ||
                  title.includes("crypto market") ||
@@ -63,10 +58,8 @@ export function NewsPanel() {
                  itemCategory === "cryptocurrency" ||
                  itemCategory === "business";
         } else if (category === "latest") {
-          // Show the most recent news
-          return true; // Show all news sorted by timestamp
+          return true; 
         } else if (category === "popular") {
-          // Show news about DeFi, NFTs, blockchain, and technology
           return title.includes("defi") ||
                  title.includes("nft") ||
                  title.includes("blockchain") ||
@@ -83,7 +76,6 @@ export function NewsPanel() {
         if (category === "latest") {
           return (b.timestamp || 0) - (a.timestamp || 0);
         }
-        // For trending and popular, prioritize items with matching categories
         if (category === "trending") {
           const aIsCrypto = a.category.toLowerCase() === "cryptocurrency";
           const bIsCrypto = b.category.toLowerCase() === "cryptocurrency";
